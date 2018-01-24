@@ -47,7 +47,9 @@
     <div class= "col-md-8">
         <h3>Items</h3>
         <% @items.each do |item| %>
-         <p><%= item.name %></p>
+        <%= form_for :choice do |f|%>
+         <p> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint%> &nbsp <%= f.submit %> </p>
+        <% end %>
         <% end %>
     </div>
 </div>
