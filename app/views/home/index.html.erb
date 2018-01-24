@@ -1,0 +1,54 @@
+<h1>ARK Survival Evolved Console Command Compiler</h1>
+
+<div class="row">
+    <div class="col-md-12">
+        <h3>Description</h3>
+        <ol>
+            <li>Pick The items you want</li>
+            <li>Choose how many of each item you want</li>
+            <li>Choose the quality of the item</li>
+            <li>Copy to your clipboard</li>
+            <li> Press " ` " when you are in the game to open the console</li>
+            <li>Press "ctrl + v" and hit enter</li>
+            <li>Play Ark with all of the gear you want</li>
+        </ol>
+    </div>
+</div>
+<h3>Filters</h3>
+<div class= "row">
+    
+    <div class= "col-md-3">
+        <p>filters will go here</p>
+    </div>
+    
+    <div class= "col-md-3">
+        <p>filters will go here</p>
+    </div>
+    
+    <div class= "col-md-3">
+        <p>filters will go here</p>
+    </div>
+    
+    <div class= "col-md-3">
+        <p>filters will go here</p>
+    </div>
+</div>
+
+<div class= "row">
+    <div class= "col-md-4">
+        <h3>Loadout</h3>
+        <p>This will be the loadout section</p>
+        <% @choices.each do |choice|%>
+        <% item = @items.where("id = #{choice.item_id}").first%>
+        <p><%= item.name %>, <%= choice.quantity%>, <%= choice.quality %></p>
+        
+        <% end %>
+    </div>
+    <div class= "col-md-8">
+        <h3>Items</h3>
+        <% @items.each do |item| %>
+         <p><%= item.name %></p>
+        <% end %>
+    </div>
+</div>
+
