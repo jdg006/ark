@@ -32,6 +32,8 @@ Rails.application.routes.draw do
   get 'choice/edit'
 
   get 'home/index'
+  
+  get 'home/delete'
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

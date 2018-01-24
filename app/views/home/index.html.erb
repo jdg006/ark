@@ -17,21 +17,43 @@
 <h3>Filters</h3>
 <div class= "row">
     
-    <div class= "col-md-3">
-        <p>filters will go here</p>
+   <%= form_for :filter do |f| %>
+    <div class= "col-md-2">
+        <p>Resources <%= f.check_box :filter%></p>
+        <p>Tools <%= f.check_box :filter%></p>
+        <p>Ammunition <%= f.check_box :filter%></p>
+    </div>
+        
+    
+    <div class= "col-md-2">
+        <p>Armor <%= f.check_box :filter%></p>
+        <p>Saddles <%= f.check_box :filter%></p>
+        <p>Skins <%= f.check_box :filter%></p>
     </div>
     
-    <div class= "col-md-3">
-        <p>filters will go here</p>
+    <div class= "col-md-2">
+        <p>Structures <%= f.check_box :filter%></p>
+        <p>Dye <%= f.check_box :filter%></p>
+        <p>Artifacts <%= f.check_box :filter%></p>
     </div>
     
-    <div class= "col-md-3">
-        <p>filters will go here</p>
+    <div class= "col-md-2">
+        <p>Consumables <%= f.check_box :filter%></p>
+        <p>Recipes <%= f.check_box :filter%></p>
+        <p>Trophy <%= f.check_box :filter%></p>
     </div>
     
-    <div class= "col-md-3">
-        <p>filters will go here</p>
+    <div class= "col-md-2">
+        <p>Eggs <%= f.check_box :filter%></p>
+        <p>Farming <%= f.check_box :filter%></p>
     </div>
+    
+    <div class= "col-md-2">
+        <p>Seeds <%= f.check_box :filter%></p>
+        <p>Weapons and Attachments <%= f.check_box :filter%></p>
+    </div>
+  <% end %>
+    
 </div>
 
 <div class= "row">
@@ -40,8 +62,9 @@
         <p>This will be the loadout section</p>
         <% @choices.each do |choice|%>
         <% item = @items.where("id = #{choice.item_id}").first%>
-        <p><%= item.name %>, <%= choice.quantity%>, <%= choice.quality %></p>
-        
+        <%= form_for :loadout do |f| %>
+        <p><%= item.name %>, quantity: <%= choice.quantity%>, quality: <%= choice.quality %> blueprint: <%= choice.blueprint %> <%=button_to "remove", action: "delete"%></p>
+        <% end %>
         <% end %>
     </div>
     <div class= "col-md-8">
