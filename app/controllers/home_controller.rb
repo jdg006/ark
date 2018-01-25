@@ -4,4 +4,7 @@ class HomeController < ApplicationController
     @loadout = Loadout.first
     @choices = Choice.all
   end
+  
+  def delete
+  end
 end
