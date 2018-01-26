@@ -30,4 +30,6 @@ source 'https://rubygems.org'
  gem 'turbolinks'
 
 gem 'bootstrap-sass'
+gem 'clipboard-rails'
+gem 'jquery-turbolinks'
 

@@ -70,10 +70,20 @@
     <div class= "col-md-8">
         <h3>Items</h3>
         <% @items.each do |item| %>
-        <%= form_for :choice do |f|%>
-         <p> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint%> &nbsp <%= f.submit %> </p>
+            <%= form_for :choice do |f|%>
+               <p> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint%> &nbsp <%= f.submit %> </p>
+            <% end %>
         <% end %>
-        <% end %>
+    </div>
+</div>
+
+<div class= "row">
+    <div class= "col-md-12">
+        <h3>Console Entry</h3>
+       <textarea id="console_string" rows="<%= @loadout.choices.count%>" cols="200"><%= @console_string %></textarea>
+       <button class="clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#console_string">
+       Copy to clipboard
+      </button>
     </div>
 </div>
 
