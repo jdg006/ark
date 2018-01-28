@@ -27,13 +27,18 @@ Rails.application.routes.draw do
 
   get 'choice/show'
 
-  get 'choice/new'
+  post 'choice/new'
 
   get 'choice/edit'
+  
+  delete 'choice/delete'
+  
+  post 'home/index'
 
   get 'home/index'
   
-  get 'home/delete'
+  delete 'home/delete'
+  
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.

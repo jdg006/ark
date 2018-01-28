@@ -63,15 +63,16 @@
         <% @choices.each do |choice|%>
         <% item = @items.where("id = #{choice.item_id}").first%>
         <%= form_for :loadout do |f| %>
-        <p><%= item.name %>, quantity: <%= choice.quantity%>, quality: <%= choice.quality %> blueprint: <%= choice.blueprint %> <%=button_to "remove", action: "delete"%></p>
+        <p><%= item.name %>, quantity: <%= choice.quantity%>, quality: <%= choice.quality %> blueprint: <%= choice.blueprint %> <%= link_to "remove", home_delete_path(choice), method: :delete, class: 'btn btn-danger' %></p>
         <% end %>
         <% end %>
     </div>
     <div class= "col-md-8">
         <h3>Items</h3>
         <% @items.each do |item| %>
-            <%= form_for :choice do |f|%>
-               <p> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint%> &nbsp <%= f.submit %> </p>
+        <% item_id = item.id %>
+            <%= form_for :choice, url: choice_new_path  do |f| %>
+               <p> <%= hidden_field_tag 'item_id', item_id %> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint %> &nbsp <%= f.submit %> </p>
             <% end %>
         <% end %>
     </div>
