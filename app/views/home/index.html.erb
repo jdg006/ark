@@ -16,50 +16,29 @@
 </div>
 <h3>Filters</h3>
 <div class= "row">
-    
-   <%= form_for :filter do |f| %>
-    <div class= "col-md-2">
-        <p>Resources <%= f.check_box :filter%></p>
-        <p>Tools <%= f.check_box :filter%></p>
-        <p>Ammunition <%= f.check_box :filter%></p>
+    <div class= "col-md-12">
+    <% @filters.each do |filter| %>
+       <%= form_for :filter, url: filter_edit_path do |f| %>
+               <% if filter.active == false %>
+                  <p> <%= filter.name %> &nbsp <%= hidden_field_tag 'filter_id', filter.id %>  <%= f.submit "Add Filter"%> </p>
+               <% end %>  
+           <% end %>
+       <% end %>
+       
+       <h3>Active Filters</h3>
+       <% @filters.each do |filter| %>
+       <%= form_for :filter, url: filter_edit_path do |f| %>
+               <% if filter.active == true %>
+                  <p> <%= filter.name %> &nbsp <%= hidden_field_tag 'filter_id', filter.id %> <%= f.submit "Remove Filter"%> </p>
+               <% end %>  
+           <% end %>
+       <% end %>
     </div>
-        
-    
-    <div class= "col-md-2">
-        <p>Armor <%= f.check_box :filter%></p>
-        <p>Saddles <%= f.check_box :filter%></p>
-        <p>Skins <%= f.check_box :filter%></p>
-    </div>
-    
-    <div class= "col-md-2">
-        <p>Structures <%= f.check_box :filter%></p>
-        <p>Dye <%= f.check_box :filter%></p>
-        <p>Artifacts <%= f.check_box :filter%></p>
-    </div>
-    
-    <div class= "col-md-2">
-        <p>Consumables <%= f.check_box :filter%></p>
-        <p>Recipes <%= f.check_box :filter%></p>
-        <p>Trophy <%= f.check_box :filter%></p>
-    </div>
-    
-    <div class= "col-md-2">
-        <p>Eggs <%= f.check_box :filter%></p>
-        <p>Farming <%= f.check_box :filter%></p>
-    </div>
-    
-    <div class= "col-md-2">
-        <p>Seeds <%= f.check_box :filter%></p>
-        <p>Weapons and Attachments <%= f.check_box :filter%></p>
-    </div>
-  <% end %>
-    
 </div>
 
 <div class= "row">
     <div class= "col-md-4">
         <h3>Loadout</h3>
-        <p>This will be the loadout section</p>
         <% @choices.each do |choice|%>
         <% item = @items.where("id = #{choice.item_id}").first%>
         <%= form_for :loadout do |f| %>
@@ -69,10 +48,18 @@
     </div>
     <div class= "col-md-8">
         <h3>Items</h3>
-        <% @items.each do |item| %>
-            <%= form_for :choice, url: choice_new_path  do |f| %>
-               <p> <%= hidden_field_tag 'item_id', item.id %> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint %> &nbsp <%= f.submit %> </p>
+        <% if @active_filters.empty? == true %>
+            <% @items.each do |item| %>
+                <%= form_for :choice, url: choice_new_path  do |f| %>
+                   <p> <%= hidden_field_tag 'item_id', item.id %> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint %> &nbsp <%= f.submit %> </p>
+                <% end %>
             <% end %>
+        <% else%>  
+            <% @filtered_items.each do |item| %>
+                    <%= form_for :choice, url: choice_new_path  do |f| %>
+                          <p> <%= hidden_field_tag 'item_id', item.id %> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint %> &nbsp <%= f.submit %> </p>
+                    <% end %>
+                <% end %>
         <% end %>
     </div>
 </div>

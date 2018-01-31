@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
-  
+  post 'filter/edit'
+  #resources :filters, only: :update
   post 'choice/new'
   delete 'choice/delete'
   get 'home/index'

@@ -4,6 +4,9 @@ class HomeController < ApplicationController
     @loadout = Loadout.first
     @choices = Choice.all
     @console_string = compile_console_string(@loadout)
+    @filters = Filter.all
+    @active_filters = Filter.where(active: true)
+    @filtered_items = filtered_items(@items, @active_filters)
   end
   
   private
@@ -12,8 +15,10 @@ class HomeController < ApplicationController
     
     console_string = ""
     
+    choice_count = 0
+    
     loadout.choices.each do |choice|
-      
+      choice_count += 1
       item = Item.where(id: choice.item_id).first
       number_of_commands = choice.quantity/item.stack_size
       last_command_remainder = choice.quantity % item.stack_size
@@ -47,9 +52,24 @@ class HomeController < ApplicationController
         
       end
         
+        if choice_count == loadout.choices.count
+          console_string.chomp!(' | ')
+        end
     end
    
     return console_string
           
+  end
+  
+  def filtered_items(items, filters)
+    filtered_items = []
+    items.each do |item|
+      filters.each do |filter|
+        if item.category == filter.name
+          filtered_items.push(item)
+        end
+      end
+    end
+    return filtered_items
   end
 end
