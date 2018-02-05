@@ -2,18 +2,16 @@ class FilterController < ApplicationController
     
     def edit
         
-        filters = Filter.where(id: params[:filter_id])
-        
+        activated_filter = Filter.where(id: params[:format]).first
+        filters = Filter.all
         filters.each do |filter|
-        
-            if filter.active == true
-                filter.assign_attributes({:active => false})
-            else
-                filter.assign_attributes({:active => true})
-            end
-            
+            filter.assign_attributes({:active => false})
             filter.save
+        end
         
+        if activated_filter.name != "All"
+            activated_filter.assign_attributes({:active => true})
+            activated_filter.save
         end
         
         redirect_to home_index_url

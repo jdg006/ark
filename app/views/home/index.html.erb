@@ -1,7 +1,9 @@
-<h1>ARK Survival Evolved Console Command Compiler</h1>
+<div class= "jumbotron text-center">
+    <h1>ARK Survival Evolved Console Command Compiler</h1>
+</div>
 
-<div class="row">
-    <div class="col-md-12">
+<div class="row first">
+    <div class="col-md-4">
         <h3>Description</h3>
         <ol>
             <li>Pick The items you want</li>
@@ -13,64 +15,52 @@
             <li>Play Ark with all of the gear you want</li>
         </ol>
     </div>
-</div>
-<h3>Filters</h3>
-<div class= "row">
-    <div class= "col-md-12">
-    <% @filters.each do |filter| %>
-       <%= form_for :filter, url: filter_edit_path do |f| %>
-               <% if filter.active == false %>
-                  <p> <%= filter.name %> &nbsp <%= hidden_field_tag 'filter_id', filter.id %>  <%= f.submit "Add Filter"%> </p>
-               <% end %>  
-           <% end %>
-       <% end %>
-       
-       <h3>Active Filters</h3>
-       <% @filters.each do |filter| %>
-       <%= form_for :filter, url: filter_edit_path do |f| %>
-               <% if filter.active == true %>
-                  <p> <%= filter.name %> &nbsp <%= hidden_field_tag 'filter_id', filter.id %> <%= f.submit "Remove Filter"%> </p>
-               <% end %>  
-           <% end %>
-       <% end %>
+    <div class= "col-md-7">
+       <h3>Console Entry</h3>
+       <textarea id="console_string" rows="7" cols="100"><%= @console_string %></textarea>
+       <button class="clipboard-btn btn btn-success" data-clipboard-action="copy" data-clipboard-target="#console_string">
+       Copy to clipboard
+      </button>
     </div>
 </div>
 
-<div class= "row">
+<div class= "row second">
     <div class= "col-md-4">
         <h3>Loadout</h3>
         <% @choices.each do |choice|%>
-        <% item = @items.where("id = #{choice.item_id}").first%>
-        <%= form_for :loadout do |f| %>
-        <p><%= item.name %>, quantity: <%= choice.quantity%>, quality: <%= choice.quality %> blueprint: <%= choice.blueprint %> <%= link_to "remove", choice_delete_path(choice), method: :delete, class: 'btn btn-danger' %></p>
-        <% end %>
+            <% item = @items.where("id = #{choice.item_id}").first %>
+            <%= form_for :loadout do |f| %>
+                <p><%= item.name %>, quantity: <%= choice.quantity%>, quality: <%= choice.quality %> blueprint: <%= choice.blueprint %> <%= link_to "remove", choice_delete_path(choice), method: :delete, class: 'btn btn-danger' %></p>
+            <% end %>
         <% end %>
     </div>
-    <div class= "col-md-8">
+    <div class= "col-md-7">
         <h3>Items</h3>
+        <div class="dropdown">
+            <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Category
+                <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu" role="menu" aria-labelledby="menu1">
+                <% @filters.each do |filter|%>
+                    <% unless filter.active == true%>
+                      <li role="presentation"><%= link_to filter.name, filter_edit_path(filter), method: :post %></li>
+                    <% end %>
+                <% end %>
+            </ul>
+        </div>
         <% if @active_filters.empty? == true %>
             <% @items.each do |item| %>
                 <%= form_for :choice, url: choice_new_path  do |f| %>
-                   <p> <%= hidden_field_tag 'item_id', item.id %> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint %> &nbsp <%= f.submit %> </p>
+                   <p> <%= hidden_field_tag 'item_id', item.id %> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint %> &nbsp <%= f.submit "select", class: 'btn btn-success' %> </p>
                 <% end %>
             <% end %>
         <% else%>  
             <% @filtered_items.each do |item| %>
                     <%= form_for :choice, url: choice_new_path  do |f| %>
-                          <p> <%= hidden_field_tag 'item_id', item.id %> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint %> &nbsp <%= f.submit %> </p>
+                          <p> <%= hidden_field_tag 'item_id', item.id %> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint %> &nbsp <%= f.submit "select", class: 'btn btn-success' %> </p>
                     <% end %>
                 <% end %>
         <% end %>
-    </div>
-</div>
-
-<div class= "row">
-    <div class= "col-md-12">
-        <h3>Console Entry</h3>
-       <textarea id="console_string" rows="<%= @loadout.choices.count%>" cols="200"><%= @console_string %></textarea>
-       <button class="clipboard-btn" data-clipboard-action="copy" data-clipboard-target="#console_string">
-       Copy to clipboard
-      </button>
     </div>
 </div>
 
