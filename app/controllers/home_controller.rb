@@ -1,4 +1,6 @@
 class HomeController < ApplicationController
+  
+  #sets variables that can be accessed in the index section of the home page
   def index
     @items = Item.all
     @loadout = Loadout.first
@@ -11,6 +13,7 @@ class HomeController < ApplicationController
   
   private
   
+  #compiles the console command from the list of choices provided by the user
   def compile_console_string(loadout)
     
     console_string = ""
@@ -61,6 +64,7 @@ class HomeController < ApplicationController
           
   end
   
+  #creates a list of items to be displayed based on the active filter
   def filtered_items(items, filters)
     filtered_items = []
     items.each do |item|
