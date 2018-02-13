@@ -1,32 +1,30 @@
-Ark Console Command Compiler
+# Ark Console Command Compiler
+
+### Description
 
 This is a rails app that is intended to be used with the video game: Ark Survival Evolved.
 This app is intended to allow a user to pick the items that they want in the game from a list of items.
 They will choose the quantity, and quality of the items they want and the app will generate the console commands
 needed to give the user the items. 
 
-Welcome to your Rails project on Cloud9 IDE!
+### Installation
 
-To get started, just do the following:
+1. Make sure you have rails installed version: ` 4.2.5 `. 
+2. Make sure you have git installed version: `2.14.1`. 
+3. Fork the repository from https://github.com/jdg006/ark and clone the fork `git clone https://github.com/<your username>/ark.git`
+4. run `bundle install`
+5. run `rake db:create`
+6. run `rake db:migrate`
+7. If you want to use my seed data for testing run `rake db:seed` otherwise you can edit the seed file with your own data and then run `rake db:seed`
 
-1. Run the project with the "Run Project" button in the menu bar on top of the IDE.
-2. Preview your new app by clicking on the URL that appears in the Run panel below (https://HOSTNAME/).
+### Terms of Use
 
-Happy coding!
-The Cloud9 IDE team
+This project is open source so you can do whatever you like with it. If you do something really cool with it or you use to create a money generating project all I ask is that you give a shout out to me somewhere in the project so that I can show a potential future employer that my ideas can generate revenue. 
 
+### Code of Conduct
 
-## Support & Documentation
-
-Visit http://docs.c9.io for support, or to learn more about using Cloud9 IDE. 
-To watch some training videos, visit http://www.youtube.com/user/c9ide
-
-Terms of Use
-
-Code of Conduct
-
-For collaborators: 
+#### For collaborators: 
 
 Comments and corrections should be worded as professionally as possible. Constructive criticism is encouraged. Name calling is childish and will be met with relentless ridicule.
 Comments based on an individuals race, creed, political party or nationality will not be tolerated and will be grounds for an imediate boot from the project's collaborators list.
-Additional functionality reccomendations are encouraged and will be met with praise and appreciation from me, a complete stranger, for what it's worth. Thanks for the help with this project. 
+Additional functionality recomendations are encouraged and will be met with praise and appreciation from me, a complete stranger, for what it's worth. Thanks for the help with this project. 
