@@ -14,6 +14,8 @@ class HomeController < ApplicationController
   private
   
   #compiles the console command from the list of choices provided by the user
+  # uses the parameter loadout which contains all of the choices selected by the user
+  # returns a string
   def compile_console_string(loadout)
     
     console_string = ""
@@ -65,6 +67,8 @@ class HomeController < ApplicationController
   end
   
   #creates a list of items to be displayed based on the active filter
+  # takes parameters items (Array) and filters (Array)
+  # returns an array of filtered items
   def filtered_items(items, filters)
     filtered_items = []
     items.each do |item|

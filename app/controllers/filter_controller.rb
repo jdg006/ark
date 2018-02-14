@@ -1,6 +1,7 @@
 class FilterController < ApplicationController
     
     #changes filter active status to false if it is true and true if it is false
+    #uses parameter [:format] where format is the id of the selected filter
     def edit
         
         activated_filter = Filter.where(id: params[:format]).first

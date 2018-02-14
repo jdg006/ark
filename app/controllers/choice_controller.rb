@@ -1,6 +1,6 @@
 class ChoiceController < ApplicationController
   
-  #creates a new choice
+  #creates a new choice using parameters [:choice][:quantity], [:choice][:quality] and [:item_id]
   def new
     quantity = params[:choice][:quantity]
     quality = params[:choice][:quality]
@@ -19,7 +19,7 @@ class ChoiceController < ApplicationController
     redirect_to home_index_url
   end
   
-  #deletes a choice
+  #deletes a choice using parameters [:format] where format is the item_id of the choice to be deleted
   def delete
     id = params[:format]
     Choice.where("id = #{id}").first.destroy
