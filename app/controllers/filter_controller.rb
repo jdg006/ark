@@ -8,12 +8,16 @@ class FilterController < ApplicationController
         filters = Filter.all
         filters.each do |filter|
             filter.assign_attributes({:active => false})
-            filter.save
+            if filter.save
+                logger.debug "filter successfully updated: #{filter.attributes.inspect}"
+            end
         end
         
         if activated_filter.name != "All"
             activated_filter.assign_attributes({:active => true})
-            activated_filter.save
+            if activated_filter.save
+                logger.debug "filter successfully updated: #{activated_filter.attributes.inspect}"
+            end
         end
         
         redirect_to home_index_url
