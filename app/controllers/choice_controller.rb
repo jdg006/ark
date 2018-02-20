@@ -1,4 +1,5 @@
 class ChoiceController < ApplicationController
+  #
   
   #creates a new choice using parameters [:choice][:quantity], [:choice][:quality] and [:item_id]
   
