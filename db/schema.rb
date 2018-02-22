@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -14,48 +13,48 @@
 ActiveRecord::Schema.define(version: 20180128203807) do
 
   create_table "choices", force: :cascade do |t|
-    t.integer  "item_id"
-    t.integer  "quantity"
-    t.integer  "quality"
-    t.integer  "loadout_id"
+    t.integer "item_id"
+    t.integer "quantity"
+    t.integer "quality"
+    t.integer "loadout_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean  "blueprint"
+    t.boolean "blueprint"
   end
 
   create_table "filters", force: :cascade do |t|
-    t.string   "name"
-    t.boolean  "active"
+    t.string "name"
+    t.boolean "active"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "items", force: :cascade do |t|
-    t.string   "name"
-    t.string   "category"
-    t.integer  "stack_size"
-    t.integer  "item_id"
-    t.string   "class_name"
-    t.string   "blueprint_path"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
+    t.string "name"
+    t.string "category"
+    t.integer "stack_size"
+    t.integer "item_id"
+    t.string "class_name"
+    t.string "blueprint_path"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "loadouts", force: :cascade do |t|
-    t.integer  "user_id"
-    t.datetime "created_at",     null: false
-    t.datetime "updated_at",     null: false
-    t.string   "console_string"
-    t.string   "string"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "console_string"
+    t.string "string"
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email"
-    t.string   "password"
-    t.integer  "access_level"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
+    t.string "name"
+    t.string "email"
+    t.string "password"
+    t.integer "access_level"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

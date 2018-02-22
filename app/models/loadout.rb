@@ -1,3 +1,3 @@
-class Loadout < ActiveRecord::Base
+class Loadout < ApplicationRecord
     has_many :choices
 end

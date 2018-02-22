@@ -1,2 +1,2 @@
-class Filter < ActiveRecord::Base
+class Filter < ApplicationRecord
 end
