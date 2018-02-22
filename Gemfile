@@ -17,7 +17,9 @@ source 'https://rubygems.org'
  group :development, :test do
    gem 'rspec-rails', '~> 3.7.0'
    gem 'rspec_junit_formatter'
+   gem 'rails-controller-testing'
    gem 'listen'
+   
  end
  
  # Use SCSS for stylesheets
