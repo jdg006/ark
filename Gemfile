@@ -16,6 +16,7 @@ source 'https://rubygems.org'
  
  group :development, :test do
    gem 'rspec-rails', '~> 3.7.0'
+   gem 'rspec_junit_formatter'
    gem 'listen'
  end
  
