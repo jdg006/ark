@@ -15,7 +15,10 @@ needed to give the user the items.
 4. run `bundle install`
 5. run `rake db:create`
 6. run `rake db:migrate`
-
+7. run `rake db:seed`
+7. run `rails s`
+8. open browser window to your localhost
+9. work on website
 ### Terms of Use
 
 This project is open source so you can do whatever you like with it. If you do something really cool with it or you use to create a money generating project all I ask is that you give a shout out to me somewhere in the project so that I can show a potential future employer that my ideas can generate revenue. 
