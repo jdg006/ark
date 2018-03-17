@@ -1,4 +1,4 @@
-class CreateChoices < ActiveRecord::Migration
+class CreateChoices < ActiveRecord::Migration[5.1]
   def change
     create_table :choices do |t|
       t.integer :item_id

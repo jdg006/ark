@@ -16,10 +16,10 @@ ActiveRecord::Schema.define(version: 20180128203807) do
     t.integer "item_id"
     t.integer "quantity"
     t.integer "quality"
+    t.boolean "blueprint"
     t.integer "loadout_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.boolean "blueprint"
   end
 
   create_table "filters", force: :cascade do |t|
@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20180128203807) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "console_string"
-    t.string "string"
   end
 
   create_table "users", force: :cascade do |t|
