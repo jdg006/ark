@@ -9,13 +9,12 @@ needed to give the user the items.
 
 ### Installation
 
-1. Make sure you have rails installed version: ` 4.2.5 `. 
+1. Make sure you have rails installed version: ` 5.1.5 `. 
 2. Make sure you have git installed version: `2.14.1`. 
 3. Fork the repository from https://github.com/jdg006/ark and clone the fork `git clone https://github.com/<your username>/ark.git`
 4. run `bundle install`
 5. run `rake db:create`
 6. run `rake db:migrate`
-7. If you want to use my seed data for testing run `rake db:seed` otherwise you can edit the seed file with your own data and then run `rake db:seed`
 
 ### Terms of Use
 
