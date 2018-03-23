@@ -4,7 +4,7 @@
 
 <div class="row first">
     <div class="col-md-4">
-        <h3>Description</h3>
+        <h2>Description</h2>
         <ol>
             <li>Pick The items you want</li>
             <li>Choose how many of each item you want</li>
@@ -15,8 +15,9 @@
             <li>Play Ark with all of the gear you want</li>
         </ol>
     </div>
+    
     <div class= "col-md-7">
-       <h3>Console Entry</h3>
+       <h2>Console Entry</h2>
        <textarea id="console_string" rows="7" cols="100"><%= @console_string %></textarea>
        <button class="clipboard-btn btn btn-success" data-clipboard-action="copy" data-clipboard-target="#console_string">
        Copy to clipboard
@@ -26,16 +27,35 @@
 
 <div class= "row second">
     <div class= "col-md-4">
-        <h3>Loadout</h3>
+        <h2>Loadout</h2>
         <% @choices.each do |choice|%>
             <% item = @items.where("id = #{choice.item_id}").first %>
-            <%= form_for :loadout do |f| %>
-                <p><%= item.name %>, quantity: <%= choice.quantity%>, quality: <%= choice.quality %> blueprint: <%= choice.blueprint %> <%= link_to "remove", choice_delete_path(choice), method: :delete, class: 'btn btn-danger' %></p>
+            <%= form_for :choice, html: {class: "form-inline"} do |f| %>
+                <div class= "col-2"><%= item.name %></div>
+            
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="quantity">Quantity</label>
+                    <%= f.number_field :quantity, :readonly => true, :value => choice.quantity, class: 'form-control'  %>
+                </div>
+                
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="quality">Quality</label>
+                    <%= f.number_field :quality, :readonly => true, :value => choice.quality, in: 1...101, class: 'form-control' %>
+                </div>
+            
+                <div class="form-group mx-sm-3 mb-2">
+                    <label for="blueprint">Blueprint:</label>
+                    <%= choice.blueprint %>
+                </div>
+                
+                <%= link_to "remove", choice_delete_path(choice), method: :delete, class: 'btn btn-danger' %>
+                
             <% end %>
         <% end %>
     </div>
+    
     <div class= "col-md-7">
-        <h3>Items</h3>
+        <h2>Items</h2>
         <div class="dropdown">
             <button class="btn btn-default dropdown-toggle" type="button" id="menu1" data-toggle="dropdown">Category
                 <span class="caret"></span>
@@ -50,17 +70,57 @@
         </div>
         <% if @active_filters.empty? == true %>
             <% @items.each do |item| %>
-                <%= form_for :choice, url: choice_new_path  do |f| %>
-                   <p> <%= hidden_field_tag 'item_id', item.id %> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint %> &nbsp <%= f.submit "select", class: 'btn btn-success' %> </p>
+                <%= form_for :choice, url: choice_new_path, html: {class:"form-inline"}  do |f| %>
+                    
+                    <p><%= hidden_field_tag 'item_id', item.id %></p> 
+                    <div class= "col-2"><%= item.name %> </div>  
+                   
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="quantity">Quantity</label>
+                        <%= f.number_field :quantity, :value => 1, min: 1, class: 'form-control'  %>
+                    </div>
+                    
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="quality">Quality</label>
+                        <%= f.number_field :quality, :value => 100, in: 1...101, class: 'form-control' %>
+                    </div>
+                    
+                    <div class="form-check form-check-inline blueprint-div">
+                        <%= f.check_box :blueprint, id: "blueprint", class:"form-check-input" %>
+                        <label class="form-check-label" for="blueprint">
+                            Blueprint
+                        </label>
+                    </div>
+                    <%= f.submit "select", class: 'btn btn-success mb-2' %>
                 <% end %>
             <% end %>
         <% else%>  
             <% @filtered_items.each do |item| %>
-                    <%= form_for :choice, url: choice_new_path  do |f| %>
-                          <p> <%= hidden_field_tag 'item_id', item.id %> <%= item.name %> &nbsp quantity: <%= f.number_field :quantity %> quality: <%= f.number_field :quality %>  blueprint: <%= f.check_box :blueprint %> &nbsp <%= f.submit "select", class: 'btn btn-success' %> </p>
-                    <% end %>
+                <%= form_for :choice, url: choice_new_path, html: {class:"form-inline"}  do |f| %>
+                   <p><%= hidden_field_tag 'item_id', item.id %></p> 
+                   <div class= "col-2"><%= item.name %> </div>  
+                   
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="quantity">Quantity</label>
+                        <%= f.number_field :quantity, :value => 1, min: 1, class: 'form-control'  %>
+                    </div>
+                    
+                    <div class="form-group mx-sm-3 mb-2">
+                        <label for="quality">Quality</label>
+                        <%= f.number_field :quality, :value => 100, in: 1...100, class: 'form-control' %>
+                    </div>
+                    
+                    <div class="form-check form-check-inline blueprint-div">
+                        <%= f.check_box :blueprint, id: "blueprint", class:"form-check-input" %>
+                        <label class="form-check-label" for="blueprint">
+                            Blueprint
+                        </label>
+                    </div>
+                    <%= f.submit "select", class: 'btn btn-success mb-2' %>
                 <% end %>
+            <% end %>
         <% end %>
     </div>
 </div>
+
 
